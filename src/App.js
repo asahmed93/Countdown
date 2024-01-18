@@ -1,22 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import CountdownTimer from './Components/CountdownTimer';
+import DatePicker from './Components/DatePicker';
 
 function App() {
+  const [targetDate, setTargetDate] = useState(new Date());
+
+  const handleDateChange = (date) => {
+    if (date) setTargetDate(new Date(date));
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Countdown Timer</h1>
+        <DatePicker handleDateChange={handleDateChange} date={targetDate} />
+
+        <CountdownTimer targetDate={targetDate} />
+
       </header>
     </div>
   );
